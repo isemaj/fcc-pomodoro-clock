@@ -46,12 +46,12 @@ module.exports = {
       multiStep: true,
     }),
     new webpack.SourceMapDevToolPlugin({
-      filename: '[name].js.map', 
+      filename: '[name].js.map',
     }),
   ],
   optimization: {
     splitChunks: {
       chunks: 'all',
-    }
-  }
+    },
+  },
 };
