@@ -1,12 +1,12 @@
 **NOTE :** This template is temporary.
 
 #### Current Commit: 
+ - style, css, sass loader added
  - Uses pug as a template
  - HMR enabled 
  - Eslint enabled
  - No so much optimization only code splitting (chunks)
  - Major use for inline styling
- - No css nor sass
  - React-Redux setup
  - Babel 7
  - `styles` folder under `src/` was created in case for using css, sass, less or anything for styling
