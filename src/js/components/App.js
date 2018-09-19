@@ -1,11 +1,17 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
 
-import Test from './Test';
+import Clock from './Clock';
+import BreakControls from './BreakControls';
+import SessionControls from './SessionControls';
+import OtherControls from './OtherControls';
 
 const App = () => (
   <div>
-    <Test />
+    <Clock />
+    <BreakControls />
+    <SessionControls />
+    <OtherControls />
   </div>
 );
 

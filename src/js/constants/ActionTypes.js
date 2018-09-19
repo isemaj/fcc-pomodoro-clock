@@ -1,2 +1,7 @@
-export const TEST = 'TEST';
-export const TEST_AGAIN = 'TEST_AGAIN';
+export const START_SESSION = 'START_SESSION';
+export const PAUSE_SESSION = 'PAUSE_SESSION';
+export const RESET = 'RESET';
+export const INCREASE_SESSION = 'INCREASE_SESSION';
+export const DECREASE_SESSION = 'DECREASE_SESSION';
+export const INCREASE_BREAK = 'INCREASE_BREAK';
+export const DECREASE_BREAK = 'DECREASE_BREAK';

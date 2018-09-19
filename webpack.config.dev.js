@@ -13,7 +13,7 @@ module.exports = {
   },
   watch: true,
   devServer: {
-    port: 8080,
+    port: 9000,
     hot: true,
     inline: true,
   },
@@ -51,7 +51,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Template',
+      title: 'FCC Pomodoro',
       hash: true,
       template: './src/index.pug',
     }),

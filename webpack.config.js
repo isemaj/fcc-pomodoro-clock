@@ -38,7 +38,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Template',
+      title: 'FCC Pomodoro',
       hash: true,
       template: './src/index.pug',
     }),

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import testReducer from './testReducer';
+import clockReducer from './clockReducer';
 
 const rootReducer = combineReducers({
-  test: testReducer,
+  clockReducer,
 });
 
 export default rootReducer;

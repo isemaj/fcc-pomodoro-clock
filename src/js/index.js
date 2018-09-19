@@ -7,8 +7,9 @@ import logger from 'redux-logger';
 
 import App from './components/App';
 import rootReducer from './reducers';
+import timerMiddleware from './middlewares/timerMiddleware';
 
-const middleware = [logger];
+const middleware = [logger, timerMiddleware];
 const middlewareEnhancer = applyMiddleware(...middleware);
 
 const enhancers = [middlewareEnhancer];
