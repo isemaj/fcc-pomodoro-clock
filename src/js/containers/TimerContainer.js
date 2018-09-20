@@ -2,8 +2,6 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-// DON'T USE THE REDUX FOR SETINTERVAL. CREATE A METHOD HERE VIA this.
-
 const TimerContainer = (props) => {
   return (
     <React.Fragment>

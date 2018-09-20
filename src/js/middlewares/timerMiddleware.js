@@ -1,14 +1,18 @@
-const timerMiddleware = (store) => (next) => (action) => {
-  console.log(store.getState().clockReducer.breakLength);
-   if (action.type === 'START_SESSION') {
-    acion.interval = setInterval(() => {
-      console.log('test');
-    }, 1000);
-  } else if (action.type === 'PAUSE_SESSION') {
-    clearInterval(action.interval);
+let intervalId = null; 
+const timerMiddleware = ({ dispatch, getState }) => (next) => (action) => {
+  if (action.type === 'PLAY_PAUSE') {
+    if (getState().clockReducer.timeStatus === 'stop' || getState().clockReducer.timeStatus === 'pause') {
+      intervalId = setInterval(() => dispatch({
+        type: 'TICK',
+      }), 1000);
+    }
+    if (getState().clockReducer.timeStatus === 'playing') {
+      clearInterval(intervalId);
+    }
   }
-  // next() passes an action to the next middleware, or to the reducer if
-  // there's no next middleware
+  if (action.type === 'RESET') {
+    clearInterval(intervalId);
+  }
   next(action);
 };
 

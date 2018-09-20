@@ -1,15 +1,15 @@
 import * as types from '../constants/ActionTypes';
 
-export const startSession = () => ({
-  type: types.START_SESSION,
-});
-
-export const pauseSession = () => ({
-  type: types.PAUSE_SESSION,
+export const playPause = () => ({
+  type: types.PLAY_PAUSE,
 });
 
 export const reset = () => ({
   type: types.RESET,
+});
+
+export const tick = () => ({
+  type: types.TICK,
 });
 
 export const increaseSession = () => ({
@@ -26,14 +26,4 @@ export const increaseBreak = () => ({
 
 export const decreaseBreak = () => ({
   type: types.DECREASE_BREAK,
-});
-
-export const test = arg => ({
-  type: types.TEST,
-  payload: arg,
-});
-
-export const secondtest = arg => ({
-  type: types.TEST,
-  payload: arg,
 });
