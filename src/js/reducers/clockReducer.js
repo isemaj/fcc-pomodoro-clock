@@ -61,14 +61,11 @@ const handleTimer = (timer, sessiontime, breaktime, type) => {
 }
 
 const clockReducer = (state = previousState, action) => {
-  // console.log(state.currentTime);
   console.log(state.timer);
   switch (action.type) {
     case types.PLAY_PAUSE: 
       return {
         ...state,
-        // timeStatus: state.timeStatus === 'stop' ? 'playing' : 'stop',
-        // timer: state.timerType === 'Session' ? state.sessionLength * 60 - 1 : state.breakLength * 60 - 1,
         timeStatus: state.timeStatus === 'stop' ? 'playing' : (state.timeStatus === 'playing' ? 'pause' : 'playing'),
         timer: state.timerType === 'Session' ? (state.timeStatus === 'stop' ?state.sessionLength * 60 - 1 : state.timer) : (state.timeStatus === 'stop' ? state.breakLength * 60 - 1 : state.timer),
       };
@@ -76,7 +73,6 @@ const clockReducer = (state = previousState, action) => {
       return {
         ...state,
         currentTime: setCurrenTime(state.timer), 
-        // timer: state.timer - 1,
         timer: handleTimer(state.timer, state.sessionLength, state.breakLength, state.timerType),
         timerType: setTimerType(state.timer, state.timerType), 
       };
