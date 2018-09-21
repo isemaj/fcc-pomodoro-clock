@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { increaseSession, decreaseSession } from '../actions/index';
 
 const SControlsContainer = (props) => {
+  let timeStatus = props.clockReducer.timeStatus === 'playing' ? true : false;
   return (
     <React.Fragment>
       <h3>{props.clockReducer.sessionLength}</h3>
-      <button id="session-increment" onClick={() => props.increaseSession()}>Up</button>
-      <button id="session-decrement" onClick={() => props.decreaseSession()}>Down</button>
+      <button id="session-increment" type="button" disabled={timeStatus} onClick={() => props.increaseSession()}>Up</button>
+      <button id="session-decrement" type="button" disabled={timeStatus} onClick={() => props.decreaseSession()}>Down</button>
     </React.Fragment>
   );
 };

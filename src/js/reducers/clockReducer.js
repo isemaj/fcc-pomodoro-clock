@@ -1,8 +1,8 @@
 import * as types from '../constants/ActionTypes';
 
 const previousState = {
-  sessionLength: 1,
-  breakLength: 1,
+  sessionLength: 25,
+  breakLength: 5,
   timeStatus: 'stop',
   timerType: 'Session',
   currentTime: '25:00',
@@ -27,11 +27,11 @@ const setLength = (sessionLength, type) => {
 const setCurrenTime = (timer, action, length, type) => {
   if (action === 'INCREASE_SESSION' || action === 'DECREASE_SESSION') {
     let duration  = setLength(length, type);
-    return `${duration}:00`;
+    return duration < 10 ? `0${duration}:00` : `${duration}:00`;
   }
   if (action === 'INCREASE_BREAK' || action === 'DECREASE_BREAK') {
     let duration = setBreak(length, type);
-    return `${duration}:00`;
+    return duration < 10 ? `0${duration}:00` : `${duration}:00`;
   }
   let minutes = Math.floor(timer / 60);
   let seconds = timer - minutes * 60;
@@ -50,7 +50,19 @@ const setTimerType = (timer, previousType) => {
   return previousType;
 }
 
-const handleTimer = (timer, sessiontime, breaktime, type) => {
+const handleTimer = (timer, sessiontime, breaktime, type, action) => {
+  if (action === 'INCREASE_SESSION') {
+    return ( sessiontime + 1 ) * 60 - 1;
+  }
+  if (action === 'DECREASE_SESSION') {
+    return ( sessiontime - 1 ) * 60 - 1;
+  }
+  if (action === 'INCREASE_BREAK') {
+    return ( breaktime + 1 ) * 60 - 1;
+  }
+  if (action === 'DECREASE_BREAK') {
+    return ( breaktime - 1 ) * 60 - 1;
+  }
   if (timer === 0 && type === 'Session') {
     return breaktime * 60;
   }
@@ -61,7 +73,6 @@ const handleTimer = (timer, sessiontime, breaktime, type) => {
 }
 
 const clockReducer = (state = previousState, action) => {
-  console.log(state.timer);
   switch (action.type) {
     case types.PLAY_PAUSE: 
       return {
@@ -79,8 +90,8 @@ const clockReducer = (state = previousState, action) => {
     case types.RESET:
       return {
         ...state,
-        sessionLength: 1,
-        breakLength: 1,
+        sessionLength: 25,
+        breakLength: 5,
         timeStatus: 'stop',
         timerType: 'Session',
         currentTime: setCurrenTime(state.timer, action.type),
@@ -90,24 +101,28 @@ const clockReducer = (state = previousState, action) => {
         ...state,
         sessionLength: setLength(state.sessionLength, 'increase'),
         currentTime: setCurrenTime(null, action.type, state.sessionLength, 'increase'),
+        timer: handleTimer(state.timer, state.sessionLength, state.breakLength, state.timerType, action.type),
       };
     case types.DECREASE_SESSION:
       return {
         ...state,
         sessionLength: setLength(state.sessionLength, 'decrease'),
         currentTime: setCurrenTime(null, action.type, state.sessionLength, 'decrease'),
+        timer: handleTimer(state.timer, state.sessionLength, state.breakLength, state.timerType, action.type),
       };
     case types.INCREASE_BREAK:
       return {
         ...state,
         breakLength: setBreak(state.breakLength, 'increase'),
         currentTime: setCurrenTime(null, action.type, state.breakLength, 'increase'),
+        timer: handleTimer(state.timer, state.sessionLength, state.breakLength, state.timerType, action.type),
       };
     case types.DECREASE_BREAK:
       return {
         ...state,
         breakLength: setBreak(state.breakLength, 'decrease'),
         currentTime: setCurrenTime(null, action.type, state.breakLength, 'decrease'),
+        timer: handleTimer(state.timer, state.sessionLength, state.breakLength, state.timerType, action.type),
       };
     default:
       return state;

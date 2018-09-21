@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 import { increaseBreak, decreaseBreak } from '../actions/index';
 
 const BControlsContainer = (props) => {
+  let timeStatus = props.clockReducer.timeStatus === 'playing' ? true : false;
   return (
     <React.Fragment>
       <h3>{props.clockReducer.breakLength}</h3>
-      <button id="break-increment" type="button" onClick={() => props.increaseBreak()}>Up</button>
-      <button id="break-decrement" type="button" onClick={() => props.decreaseBreak()}>Down</button>
+      <button id="break-increment" type="button" disabled={timeStatus} onClick={() => props.increaseBreak()}>Up</button>
+      <button id="break-decrement" type="button" disabled={timeStatus} onClick={() => props.decreaseBreak()}>Down</button>
     </React.Fragment>
   );
 };
