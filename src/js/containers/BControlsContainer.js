@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { increaseBreak, decreaseBreak } from '../actions/index';
 
 const BControlsContainer = (props) => {
-  let timeStatus = props.clockReducer.timeStatus === 'playing' ? true : false;
+  const timeStatus = props.clockReducer.timeStatus === 'playing' ? true : false;
   return (
     <React.Fragment>
       <h3>{props.clockReducer.breakLength}</h3>
