@@ -1,8 +1,8 @@
 import * as types from '../constants/ActionTypes';
 
 const previousState = {
-  sessionLength: 1,
-  breakLength: 1,
+  sessionLength: 25,
+  breakLength: 5,
   timeStatus: 'stop',
   timerType: 'Session',
   currentTime: '25:00',
@@ -59,16 +59,28 @@ const setTimerType = (timer, previousType) => {
 
 const handleTimer = (timer, sessiontime, breaktime, type, action) => {
   if (action === 'INCREASE_SESSION') {
-    return ( sessiontime + 1 ) * 60 - 1;
+    if (type === 'Session') {
+      return ( sessiontime + 1 ) * 60 - 1;
+    }
+    return timer;
   }
   if (action === 'DECREASE_SESSION') {
-    return ( sessiontime - 1 ) * 60 - 1;
+    if (type === 'Session') {
+      return ( sessiontime - 1 ) * 60 - 1;
+    }
+    return timer;
   }
   if (action === 'INCREASE_BREAK') {
-    return ( breaktime + 1 ) * 60 - 1;
+    if ( type === 'Break') {
+      return ( breaktime + 1 ) * 60 - 1;
+    }
+    return timer;
   }
   if (action === 'DECREASE_BREAK') {
-    return ( breaktime - 1 ) * 60 - 1;
+    if (type === 'Break') {
+      return ( breaktime - 1 ) * 60 - 1;
+    }
+    return timer;
   }
   if (timer === 0 && type === 'Session') {
     return breaktime * 60;
