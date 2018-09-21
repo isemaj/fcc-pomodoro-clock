@@ -1,4 +1,4 @@
-let intervalId = null; 
+let intervalId = null;
 const timerMiddleware = ({ dispatch, getState }) => (next) => (action) => {
   if (action.type === 'PLAY_PAUSE') {
     if (getState().clockReducer.timeStatus === 'stop' || getState().clockReducer.timeStatus === 'pause') {
