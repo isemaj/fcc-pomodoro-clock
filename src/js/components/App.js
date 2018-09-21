@@ -5,7 +5,7 @@ import Clock from './Clock';
 import BreakControls from './BreakControls';
 import SessionControls from './SessionControls';
 import OtherControls from './OtherControls';
-// import AudioContainer from './AudioContainer';
+import AudioContainer from '../containers/AudioContainer';
 
 const App = () => (
   <div>
@@ -13,6 +13,7 @@ const App = () => (
     <BreakControls />
     <SessionControls />
     <OtherControls />
+    <AudioContainer />
   </div>
 );
 

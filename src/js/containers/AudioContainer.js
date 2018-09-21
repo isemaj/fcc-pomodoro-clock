@@ -1,16 +1,19 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { increaseBreak, decreaseBreak } from '../actions/index';
+const play = () => {
+  const sound = document.getElementById('clock_sound');
+  sound.currentTime = 0;
+  sound.play();
+};
 
-const BControlsContainer = (props) => {
-  let timeStatus = props.clockReducer.timeStatus === 'playing' ? true : false;
+const AudioContainer = (props) => {
+  if (props.clockReducer.currentTime === '00:00') {
+    play();
+  }
   return (
     <React.Fragment>
-      <h3>{props.clockReducer.breakLength}</h3>
-      <button id="break-increment" type="button" disabled={timeStatus} onClick={() => props.increaseBreak()}>Up</button>
-      <button id="break-decrement" type="button" disabled={timeStatus} onClick={() => props.decreaseBreak()}>Down</button>
+      <audio id="clock_sound" src={props.clockReducer.audioSource} />
     </React.Fragment>
   );
 };
@@ -19,9 +22,4 @@ const mapStateToProps = state => ({
   clockReducer: state.clockReducer,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  increaseBreak,
-  decreaseBreak,
-}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(BControlsContainer);
+export default connect(mapStateToProps, null)(AudioContainer);

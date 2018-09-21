@@ -8,12 +8,13 @@ const previousState = {
   currentTime: '25:00',
   minutes: 0,
   timer: 0,
+  audioSource: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3',
 };
 
 const setBreak = (breakLength, type) => {
   if (type === 'decrease') {
     return breakLength > 1 ? breakLength - 1 : breakLength;
-  };
+  }
   return breakLength < 60 ? breakLength + 1 : breakLength;
 };
 
@@ -25,7 +26,6 @@ const setLength = (sessionLength, type) => {
 };
 
 const setCurrenTime = (timer, action, length, type, timerType, prevCurrentTime) => {
-  console.log(prevCurrentTime);
   if (action === 'INCREASE_SESSION' || action === 'DECREASE_SESSION') {
     if (timerType === 'Session') {
       const duration = setLength(length, type);
@@ -45,40 +45,41 @@ const setCurrenTime = (timer, action, length, type, timerType, prevCurrentTime) 
   minutes = minutes < 10 ? `0${minutes}` : minutes;
   seconds = seconds < 10 ? `0${seconds}` : seconds;
   return action !== 'RESET' ? `${minutes}:${seconds}` : '25:00';
-}
+};
 
 const setTimerType = (timer, previousType) => {
   if (timer === 0 && previousType === 'Session') {
     return 'Break';
-  } 
+  }
   if (timer === 0 && previousType === 'Break') {
     return 'Session';
   }
   return previousType;
-}
+};
 
 const handleTimer = (timer, sessiontime, breaktime, type, action) => {
   if (action === 'INCREASE_SESSION') {
     if (type === 'Session') {
-      return ( sessiontime + 1 ) * 60 - 1;
+      // return ( sessiontime + 1 ) * 60 - 1;
+      return sessiontime === 60 ? sessiontime * (60 - 1) : (sessiontime + 1) * 60 - 1;
     }
     return timer;
   }
   if (action === 'DECREASE_SESSION') {
     if (type === 'Session') {
-      return ( sessiontime - 1 ) * 60 - 1;
+      return sessiontime === 1 ? sessiontime * (60 - 1) : (sessiontime - 1) * 60 - 1;
     }
     return timer;
   }
   if (action === 'INCREASE_BREAK') {
-    if ( type === 'Break') {
-      return ( breaktime + 1 ) * 60 - 1;
+    if (type === 'Break') {
+      return breaktime === 60 ? (breaktime) * 60 - 1 : (breaktime + 1) * 60 - 1;
     }
     return timer;
   }
   if (action === 'DECREASE_BREAK') {
     if (type === 'Break') {
-      return ( breaktime - 1 ) * 60 - 1;
+      return breaktime === 1 ? (breaktime) * 60 - 1 : (breaktime - 1) * 60 - 1;
     }
     return timer;
   }
@@ -88,12 +89,12 @@ const handleTimer = (timer, sessiontime, breaktime, type, action) => {
   if (timer === 0 && type === 'Break') {
     return sessiontime * 60;
   }
-  return timer - 1; 
-}
+  return timer - 1;
+};
 
 const clockReducer = (state = previousState, action) => {
   switch (action.type) {
-    case types.PLAY_PAUSE: 
+    case types.PLAY_PAUSE:
       return {
         ...state,
         timeStatus: state.timeStatus === 'stop' ? 'playing' : (state.timeStatus === 'playing' ? 'pause' : 'playing'),
@@ -102,9 +103,9 @@ const clockReducer = (state = previousState, action) => {
     case types.TICK:
       return {
         ...state,
-        currentTime: setCurrenTime(state.timer), 
+        currentTime: setCurrenTime(state.timer),
         timer: handleTimer(state.timer, state.sessionLength, state.breakLength, state.timerType),
-        timerType: setTimerType(state.timer, state.timerType), 
+        timerType: setTimerType(state.timer, state.timerType),
       };
     case types.RESET:
       return {
