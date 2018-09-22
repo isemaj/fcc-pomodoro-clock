@@ -1,8 +1,7 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretUp, faCaretDown, faPlay, faPause, faUndo } from '@fortawesome/free-solid-svg-icons';
 
 import Clock from './Clock';
 import BreakControls from './BreakControls';
@@ -11,7 +10,7 @@ import OtherControls from './OtherControls';
 import AudioContainer from '../containers/AudioContainer';
 import '../../styles/app.scss';
 
-library.add(faCaretUp, faCaretDown);
+library.add(faCaretUp, faCaretDown, faPlay, faPause, faUndo);
 
 const App = () => (
   <div className="app">

@@ -8,16 +8,15 @@
 }
 
 @import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Muli');
 
 body, html {
   background-color: #59576A;
-  // box-sizing: content-box;
-  overflow: hidden;
 }
 
 .app {
   display: grid;
-  grid-template-rows: 1fr  1fr; 
+  grid-template-rows: repeat(2, 1fr); 
   grid-template-areas:
     "clock-area"
     "controls-area";
@@ -25,7 +24,7 @@ body, html {
 
 .clock {
   grid-area: clock-area;
-  height: 400px;
+  height: 310px;
 }
 
 .controls {
@@ -47,6 +46,12 @@ body, html {
   grid-area: session-controls-area;
 }
 
+.break-controls,
+.other-controls,
+.session-controls {
+  height: 100%;
+}
+
 
 #timer-label {
   font-family: 'Raleway', sans-serif;
@@ -55,7 +60,6 @@ body, html {
   text-align: center;
   color: white;
   height: auto;
-  padding-top: 40px;
   letter-spacing: .3em;
 }
 
@@ -88,11 +92,30 @@ body, html {
   font-weight: lighter;
 }
 
+.session-length,
+.break-length {
+  font-family: 'Muli', sans-serif;
+  font-weight: lighter; 
+  font-size: 40px;
+  color: white;
+  text-align: center;
+}
+
 button {
   background: none;
   outline: none;
   border: none;
+  color: white;
+  cursor: pointer;
 }
 
+.break-buttons,
+.session-buttons {
+  display: flex;
+  justify-content: center;
+}
 
-
+.other-controls {
+  display: flex;
+  justify-content: center;
+}
