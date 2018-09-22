@@ -3,8 +3,8 @@ import React from 'react';
 import SControlsContainer from '../containers/SControlsContainer';
 
 const SessionControls = () => (
-  <div>
-    <h1 id="session-label">Session Length</h1>
+  <div className="session-controls">
+    <h1 id="session-label">SESSION LENGTH</h1>
     <SControlsContainer />
   </div>
 );

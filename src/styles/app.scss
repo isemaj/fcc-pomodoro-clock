@@ -1,0 +1,98 @@
+@font-face {font-family: "Digital-7";
+    src: url("//db.onlinewebfonts.com/t/58045dabdc3a361cb9bb9faf2f1dd1f3.eot");
+    src: url("//db.onlinewebfonts.com/t/58045dabdc3a361cb9bb9faf2f1dd1f3.eot?#iefix") format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/58045dabdc3a361cb9bb9faf2f1dd1f3.woff2") format("woff2"),
+    url("//db.onlinewebfonts.com/t/58045dabdc3a361cb9bb9faf2f1dd1f3.woff") format("woff"),
+    url("//db.onlinewebfonts.com/t/58045dabdc3a361cb9bb9faf2f1dd1f3.ttf") format("truetype"),
+    url("//db.onlinewebfonts.com/t/58045dabdc3a361cb9bb9faf2f1dd1f3.svg#Digital-7") format("svg");
+}
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body, html {
+  background-color: #59576A;
+  // box-sizing: content-box;
+  overflow: hidden;
+}
+
+.app {
+  display: grid;
+  grid-template-rows: 1fr  1fr; 
+  grid-template-areas:
+    "clock-area"
+    "controls-area";
+}
+
+.clock {
+  grid-area: clock-area;
+  height: 400px;
+}
+
+.controls {
+  grid-area: controls-area;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "break-controls-area other-controls-area session-controls-area";
+}
+
+.break-controls {
+  grid-area: break-controls-area;
+}
+
+.other-controls {
+  grid-area: other-controls-area;
+}
+
+.session-controls {
+  grid-area: session-controls-area;
+}
+
+
+#timer-label {
+  font-family: 'Raleway', sans-serif;
+  font-size: 100px;
+  font-weight: lighter;
+  text-align: center;
+  color: white;
+  height: auto;
+  padding-top: 40px;
+  letter-spacing: .3em;
+}
+
+#off-time {
+  position: relative;
+  text-align: center;
+  color: #7d7d7d;
+  font-family: Digital-7;
+  font-size: 15vw;
+  height: 155px;
+  padding-top: 20px;
+}
+
+#time-left {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-family: Digital-7;
+  font-size: 15vw;
+  height: 155px;
+  top: -155px;
+}
+
+#break-label,
+#session-label {
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  text-align: center;
+  font-size: 3em;
+  font-weight: lighter;
+}
+
+button {
+  background: none;
+  outline: none;
+  border: none;
+}
+
+
+

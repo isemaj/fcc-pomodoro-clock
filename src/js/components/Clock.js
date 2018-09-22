@@ -4,7 +4,7 @@ import TimerLabelContainer from '../containers/TimerLabelContainer';
 import TimerContainer from '../containers/TimerContainer';
 
 const Clock = () => (
-  <div>
+  <div className="clock">
     <TimerLabelContainer />
     <TimerContainer />
   </div>

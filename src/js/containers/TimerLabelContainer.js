@@ -5,7 +5,7 @@ const TimerLabelContainer = (props) => {
   const { timerType } = props.clockReducer;
   return (
     <React.Fragment>
-      <h1 id="timer-label">{timerType}</h1>
+      <div id="timer-label">{timerType.toUpperCase()}</div>
     </React.Fragment>
   );
 };
