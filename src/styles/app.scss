@@ -55,7 +55,7 @@ body, html {
 
 #timer-label {
   font-family: 'Raleway', sans-serif;
-  font-size: 100px;
+  font-size: 7vw;
   font-weight: lighter;
   text-align: center;
   color: white;
@@ -88,7 +88,7 @@ body, html {
   font-family: 'Raleway', sans-serif;
   color: white;
   text-align: center;
-  font-size: 3em;
+  font-size: 3vw;
   font-weight: lighter;
 }
 
@@ -118,4 +118,35 @@ button {
 .other-controls {
   display: flex;
   justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .app {
+    grid-template-rows: auto;
+  }
+  #break-label,
+  #session-label {
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    font-weight: lighter;
+  }
+
+  #off-time,
+  #time-left {
+    font-size: 120px;
+  }
+
+  #timer-label {
+    font-size: 50px;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "other-controls-area"
+    "break-controls-area"
+    "session-controls-area"
+  }  
 }
