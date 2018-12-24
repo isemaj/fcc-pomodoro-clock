@@ -1,0 +1,152 @@
+@font-face {font-family: "Digital-7";
+    src: url("//db.onlinewebfonts.com/t/58045dabdc3a361cb9bb9faf2f1dd1f3.eot");
+    src: url("//db.onlinewebfonts.com/t/58045dabdc3a361cb9bb9faf2f1dd1f3.eot?#iefix") format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/58045dabdc3a361cb9bb9faf2f1dd1f3.woff2") format("woff2"),
+    url("//db.onlinewebfonts.com/t/58045dabdc3a361cb9bb9faf2f1dd1f3.woff") format("woff"),
+    url("//db.onlinewebfonts.com/t/58045dabdc3a361cb9bb9faf2f1dd1f3.ttf") format("truetype"),
+    url("//db.onlinewebfonts.com/t/58045dabdc3a361cb9bb9faf2f1dd1f3.svg#Digital-7") format("svg");
+}
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+body, html {
+  background-color: #59576A;
+}
+
+.app {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr); 
+  grid-template-areas:
+    "clock-area"
+    "controls-area";
+}
+
+.clock {
+  grid-area: clock-area;
+  height: 310px;
+}
+
+.controls {
+  grid-area: controls-area;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "break-controls-area other-controls-area session-controls-area";
+}
+
+.break-controls {
+  grid-area: break-controls-area;
+}
+
+.other-controls {
+  grid-area: other-controls-area;
+}
+
+.session-controls {
+  grid-area: session-controls-area;
+}
+
+.break-controls,
+.other-controls,
+.session-controls {
+  height: 100%;
+}
+
+
+#timer-label {
+  font-family: 'Raleway', sans-serif;
+  font-size: 7vw;
+  font-weight: lighter;
+  text-align: center;
+  color: white;
+  height: auto;
+  letter-spacing: .3em;
+}
+
+#off-time {
+  position: relative;
+  text-align: center;
+  color: #7d7d7d;
+  font-family: Digital-7;
+  font-size: 15vw;
+  height: 155px;
+  padding-top: 20px;
+}
+
+#time-left {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-family: Digital-7;
+  font-size: 15vw;
+  height: 155px;
+  top: -155px;
+}
+
+#break-label,
+#session-label {
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  text-align: center;
+  font-size: 3vw;
+  font-weight: lighter;
+}
+
+.session-length,
+.break-length {
+  font-family: 'Muli', sans-serif;
+  font-weight: lighter; 
+  font-size: 40px;
+  color: white;
+  text-align: center;
+}
+
+button {
+  background: none;
+  outline: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.break-buttons,
+.session-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.other-controls {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .app {
+    grid-template-rows: auto;
+  }
+  #break-label,
+  #session-label {
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    font-weight: lighter;
+  }
+
+  #off-time,
+  #time-left {
+    font-size: 120px;
+  }
+
+  #timer-label {
+    font-size: 50px;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "other-controls-area"
+    "break-controls-area"
+    "session-controls-area"
+  }  
+}
