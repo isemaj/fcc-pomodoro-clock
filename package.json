@@ -1,15 +1,15 @@
 {
-  "name": "fcc-pomodoro",
+  "name": "fcc-pomodoro-clock",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack-dev-server --config webpack.config.dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "webpack --watch --info-verbosity verbose &",
+    "start": "node server.js",
+    "dev": "webpack-dev-server --config webpack.config.dev.js"
   },
   "author": "James Itum",
-  "license": "MIT",
+  "license": "GPLv3",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.4",
     "@fortawesome/free-solid-svg-icons": "^5.3.1",
